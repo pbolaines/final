@@ -1,7 +1,7 @@
 resource "aws_iam_policy" "pb_policy" {
   name        = "${var.environment}_pb_s3_access_policy"
   path        = "/"
-  description = "ariuna 2023 test policy"
+  description = "pb 2023 test policy"
  
   policy = <<EOF
 {
@@ -47,10 +47,10 @@ EOF
 resource "aws_iam_policy_attachment" "pb_attach" {
   name       = "${var.environment}-pb-test-attachment"
   roles      = [aws_iam_role.ariuna_role.name]
-  policy_arn = aws_iam_policy.ariuna_policy.arn
+  policy_arn = aws_iam_policy.pb_policy.arn
 }
  
 resource "aws_iam_instance_profile" "pb_profile" {
   name = "${var.environment}-pb_2023_ec2_profile"
-  role = aws_iam_role.ariuna_role.name
+  role = aws_iam_role.pb_role.name
 }
