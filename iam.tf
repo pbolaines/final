@@ -51,6 +51,6 @@ resource "aws_iam_policy_attachment" "pb_attach" {
 }
  
 resource "aws_iam_instance_profile" "pb_profile" {
-  name = "${var.environment}-pb_ec2_profile"
+  name = "${var.environment}-pb_profile"
   role = aws_iam_role.pb_role.name
 }
