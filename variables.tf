@@ -7,7 +7,7 @@ variable "environment" {
 }
 
 variable "ec2_key" {
-  default = "MyKey"
+  default = "key"
 }
 
 variable "ec2_iam_instance_profile" {
