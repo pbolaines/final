@@ -43,9 +43,16 @@ pipeline {
                         // Deploy Terraform infrastructure
                         echo 'Deploying Terraform infrastructure'
                         try {
-                            sh 'terraform apply -auto-approve'
+                            // Run Terraform apply and capture both standard output and standard error
+                            def tfApplyOutput = sh(script: 'terraform apply -auto-approve', returnStdout: true, returnStatus: true)
+                            
+                            // Check the exit code of the Terraform apply command
+                            if (tfApplyOutput != 0) {
+                                // Handle non-zero exit code (failure)
+                                error "Terraform deployment failed with exit code ${tfApplyOutput}"
+                            }
                         } catch (Exception e) {
-                            // Handle terraform apply failure
+                            // Handle other exceptions
                             error "Terraform deployment failed: ${e.message}"
                         }
                     }
