@@ -11,5 +11,5 @@ variable "ec2_key" {
 }
 
 variable "ec2_iam_instance_profile" {
-  default = "DevOps-my_2023_ec2_profile"
+  default = "DevOps_my_2023_ec2_profile"
 }
